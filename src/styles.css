@@ -518,6 +518,12 @@ h1, h2, h3 {
   color: var(--text-secondary);
   max-width: 62ch;
   min-height: 3em;
+  /* Remontada a cada troca (key), então a entrada roda de novo. */
+  animation: legenda-entra .42s var(--ease) both;
+}
+@keyframes legenda-entra {
+  from { opacity: 0; transform: translateY(6px); }
+  to   { opacity: 1; transform: none; }
 }
 
 /* a moldura de janela */
@@ -636,9 +642,14 @@ h1, h2, h3 {
   width: 100%;
   height: 100%;
   opacity: 0;
-  transition: opacity .4s var(--ease);
+  transform: translateY(18px) scale(1.015);
+  transition: opacity .42s var(--ease), transform .52s cubic-bezier(.22, .8, .28, 1);
 }
-.janela__tela img.is-ativa { opacity: 1; }
+.janela__tela img.is-acima { transform: translateY(-18px) scale(1.015); }
+.janela__tela img.is-ativa {
+  opacity: 1;
+  transform: none;
+}
 
 /* ══ LISTA DE ESPERA ══════════════════════════════════════════ */
 .lista { padding-block: var(--s20); background: var(--bg-surface); border-top: 1px solid var(--border-subtle); }
@@ -830,6 +841,11 @@ h1, h2, h3 {
   .vitrine__aba[aria-selected="true"] .vitrine__titulo { color: var(--accent-contrast); }
   .vitrine__rota { display: none; }
   .vitrine__legenda { min-height: 0; }
+
+  /* Com o trilho deitado, a chegada da imagem também vira horizontal. */
+  .janela__tela img           { transform: translateX(22px) scale(1.015); }
+  .janela__tela img.is-acima  { transform: translateX(-22px) scale(1.015); }
+  .janela__tela img.is-ativa  { transform: none; }
 
   /* Ampliada no celular: a imagem fica maior que a tela e a pessoa arrasta. */
   .lupa__rolagem img { width: 1100px; max-width: none; }

@@ -343,12 +343,14 @@ function Sistema() {
               </div>
               <div className="janela__tela" id="palco-telas" role="tabpanel"
                    aria-labelledby={`aba-${tela.arq}`}>
+                {/* As telas acima da atual saem por cima, as de baixo entram por
+                    baixo — o movimento acompanha a ordem do trilho. */}
                 {TELAS.map((t, i) => (
                   <img
                     key={t.arq}
                     src={`/assets/telas/${t.arq}.webp`}
                     alt={i === ativa ? `Tela de ${t.titulo} do Hefesto` : ''}
-                    className={i === ativa ? 'is-ativa' : undefined}
+                    className={i === ativa ? 'is-ativa' : i < ativa ? 'is-acima' : 'is-abaixo'}
                     aria-hidden={i === ativa ? undefined : 'true'}
                     width="1800" height="1143"
                     loading="lazy" decoding="async"
@@ -356,7 +358,7 @@ function Sistema() {
                 ))}
               </div>
             </div>
-            <p className="vitrine__legenda">{tela.d}</p>
+            <p className="vitrine__legenda" key={tela.arq}>{tela.d}</p>
           </div>
         </div>
 
