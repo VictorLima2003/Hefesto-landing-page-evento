@@ -303,9 +303,9 @@ function Sistema() {
           <p className="nota">
             <span className="nota__rotulo">Nota · versão em desenvolvimento</span>
             <span>
-              O Hefesto está em estágio final de implementação. A interface e a
-              usabilidade ainda vão mudar até o lançamento; nada do que aparece
-              aqui é definitivo.
+              O Hefesto está em estágio final de implementação.{' '}
+              <b>A interface e a usabilidade ainda vão mudar até o lançamento</b> —
+              nada do que aparece aqui é definitivo.
             </span>
           </p>
         </div>

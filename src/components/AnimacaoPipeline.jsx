@@ -11,6 +11,11 @@ import './AnimacaoPipeline.css'
 
 const END = 22.8
 
+// A cena original foi composta com folga demais: 22,8 s de ciclo, 3,8 s deles
+// parados. O relógio anda mais rápido que o tempo real para fechar em ~15 s,
+// sem mexer na coreografia — só no compasso.
+const VELOCIDADE = 1.5
+
 const ETAPAS = [
   [0,    'Começando pelo que a fábrica já sabe'],
   [2.6,  'Lendo o contexto'],
@@ -72,7 +77,7 @@ export default function AnimacaoPipeline() {
     const passo = ts => {
       raf = requestAnimationFrame(passo)
       if (ultimo === null) { ultimo = ts; return }
-      const dt = Math.min(0.05, (ts - ultimo) / 1000)
+      const dt = Math.min(0.05, (ts - ultimo) / 1000) * VELOCIDADE
       ultimo = ts
       setT(prev => (prev + dt) % END)
     }
