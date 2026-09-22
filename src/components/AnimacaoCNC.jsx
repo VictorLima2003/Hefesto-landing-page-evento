@@ -86,14 +86,14 @@ export default function AnimacaoCNC() {
   const [t, setT] = useState(0)
   const [playing, setPlaying] = useState(true)
   const [naTela, setNaTela] = useState(true)
+  const [semPisca, setSemPisca] = useState(false)
   const box = useRef(null)
 
-  // Quem pede para não animar vê a cena no quadro final, parada.
+  // A cena é o conteúdo da página, não enfeite: ela roda sozinha para todo mundo.
+  // Quem pede menos movimento perde só o pisca-pisca do cursor, e o botão
+  // "Pausar" continua à mão.
   useEffect(() => {
-    if (window.matchMedia?.('(prefers-reduced-motion: reduce)').matches) {
-      setT(15.6)
-      setPlaying(false)
-    }
+    setSemPisca(Boolean(window.matchMedia?.('(prefers-reduced-motion: reduce)').matches))
   }, [])
 
   // Fora da tela o relógio para — não gasta bateria de quem já rolou a página.
@@ -124,7 +124,7 @@ export default function AnimacaoCNC() {
   const reiniciar = () => { setT(0); setPlaying(true) }
 
   // ── valores derivados do tempo ────────────────────────────────────────────
-  const blink = (t * 2) % 1 < 0.55 ? 1 : 0
+  const blink = semPisca ? 1 : ((t * 2) % 1 < 0.55 ? 1 : 0)
   const validando = t >= VAL_START
 
   let activeIdx = -1
