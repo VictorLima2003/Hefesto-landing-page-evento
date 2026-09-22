@@ -214,6 +214,75 @@ function NaoFaz() {
   )
 }
 
+// ── O sistema por dentro ─────────────────────────────────────────────────────
+const TELAS = [
+  {
+    arq: 'ordens-de-producao',
+    titulo: 'Ordens de produção',
+    d: 'A fila da fábrica, ordenada por atraso e urgência. O que estourou o prazo aparece em vermelho antes de qualquer outra coisa.',
+  },
+  {
+    arq: 'cadastro-de-maquinas',
+    titulo: 'Máquinas',
+    d: 'Cada centro com seu comando, número de eixos e curso. É daqui que sai a regra que o programa vai obedecer.',
+  },
+  {
+    arq: 'cadastro-de-dispositivos',
+    titulo: 'Dispositivos de fixação',
+    d: 'Morsas, placas, divisores e batentes especiais, com vida útil e inspeção. O dispositivo é quem define o zero-peça.',
+  },
+  {
+    arq: 'agentcode',
+    titulo: 'AgentCode',
+    d: 'O agente antes de receber o desenho: recortar as faces, conferir o contrato, gerar o programa.',
+  },
+]
+
+function Sistema() {
+  return (
+    <section className="sistema" id="sistema">
+      <div className="container">
+        <div className="sistema__head reveal">
+          <span className="eyebrow">O sistema hoje</span>
+          <h2 className="h2">Por dentro do Hefesto.</h2>
+          <p className="lede">
+            As telas abaixo são do sistema rodando de verdade, com o parque fabril
+            cadastrado. Não são maquete.
+          </p>
+        </div>
+
+        <p className="aviso reveal">
+          <span className="aviso__selo">Versão em desenvolvimento</span>
+          <span>
+            O Hefesto está em estágio final de implementação. Estas imagens mostram a
+            versão de hoje — <b>a interface e a usabilidade ainda vão mudar até o
+            lançamento</b>, e nada do que aparece aqui é definitivo.
+          </span>
+        </p>
+
+        <div className="telas">
+          {TELAS.map(t => (
+            <figure className="tela reveal" key={t.arq}>
+              <div className="tela__moldura">
+                <img
+                  src={`/assets/telas/${t.arq}.webp`}
+                  alt={`Tela de ${t.titulo} do Hefesto`}
+                  width="1800" height="1143"
+                  loading="lazy" decoding="async"
+                />
+              </div>
+              <figcaption>
+                <h3>{t.titulo}</h3>
+                <p>{t.d}</p>
+              </figcaption>
+            </figure>
+          ))}
+        </div>
+      </div>
+    </section>
+  )
+}
+
 // ── Lista de espera ──────────────────────────────────────────────────────────
 const PONTOS = [
   'Entrada por ordem de chegada, em grupos pequenos.',
@@ -267,27 +336,46 @@ function Rodape() {
 
 // ── App ──────────────────────────────────────────────────────────────────────
 export default function App() {
-  // Revelação ao rolar: o que já está na tela aparece na hora, sem esperar o observer.
+  // Revelação ao rolar.
+  //
+  // Checagem direta a cada quadro de rolagem, e não IntersectionObserver: o
+  // observer deixava blocos curtos para trás e o texto ficava invisível de vez.
+  // Aqui, se o elemento entrou na tela, ele aparece — sem exceção.
   useEffect(() => {
-    const alvos = document.querySelectorAll('.reveal')
-    if (!('IntersectionObserver' in window)) {
-      alvos.forEach(el => el.classList.add('visible'))
-      return
-    }
-    const obs = new IntersectionObserver(entradas => {
-      entradas.forEach(e => {
-        if (!e.isIntersecting) return
-        e.target.classList.add('visible')
-        obs.unobserve(e.target)
-      })
-    }, { threshold: 0.12 })
+    let pendentes = Array.from(document.querySelectorAll('.reveal'))
+    if (!pendentes.length) return
 
-    alvos.forEach(el => {
-      const r = el.getBoundingClientRect()
-      if (r.top < window.innerHeight && r.bottom > 0) el.classList.add('visible')
-      else obs.observe(el)
-    })
-    return () => obs.disconnect()
+    let agendado = false
+
+    const revelar = () => {
+      agendado = false
+      // Basta o topo do bloco ter cruzado a linha: o que já passou para cima
+      // também conta. Senão, quem pula direto para o formulário e volta
+      // rolando encontra texto invisível.
+      const limite = window.innerHeight - 40
+      pendentes = pendentes.filter(el => {
+        if (el.getBoundingClientRect().top >= limite) return true
+        el.classList.add('visible')
+        return false
+      })
+      if (!pendentes.length) desligar()
+    }
+
+    const agendar = () => {
+      if (agendado) return
+      agendado = true
+      requestAnimationFrame(revelar)
+    }
+
+    const desligar = () => {
+      window.removeEventListener('scroll', agendar)
+      window.removeEventListener('resize', agendar)
+    }
+
+    revelar() // o que já está na tela aparece na hora
+    window.addEventListener('scroll', agendar, { passive: true })
+    window.addEventListener('resize', agendar)
+    return desligar
   }, [])
 
   return (
@@ -298,6 +386,7 @@ export default function App() {
         <Problema />
         <Como />
         <NaoFaz />
+        <Sistema />
         <Lista />
       </main>
       <Rodape />

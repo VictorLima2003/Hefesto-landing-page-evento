@@ -42,7 +42,9 @@
   /* ── estado (cor = estado, nunca decoração) ── */
   --ok:      #2f6b4f;
   --ok-soft: #e3efe9;
-  --warn:    #8a6410;
+  --warn:        #8a6410;
+  --warn-soft:   #fbf4e3;
+  --warn-border: #e8d6ab;
   --err:     #9a3f3f;
   --err-soft:#f6e9e9;
 
@@ -73,6 +75,9 @@
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 html { scroll-behavior: smooth; }
+
+/* A barra fica presa no topo: quem chega por âncora não pode parar embaixo dela. */
+section[id] { scroll-margin-top: calc(var(--nav-h) + var(--s4)); }
 
 body {
   background: var(--bg-app);
@@ -424,6 +429,62 @@ h1, h2, h3 {
 }
 .naofaz__foot b { color: #ffffff; font-weight: 600; }
 
+/* ══ O SISTEMA POR DENTRO ═════════════════════════════════════ */
+.sistema { padding-block: var(--s20); background: var(--bg-app); }
+.sistema__head { max-width: 62ch; margin-bottom: var(--s6); }
+.sistema__head h2 { margin-block: var(--s5); }
+
+/* aviso de versão em desenvolvimento */
+.aviso {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: var(--s3) var(--s4);
+  align-items: center;
+  max-width: 84ch;
+  margin-bottom: var(--s12);
+  padding: var(--s5) var(--s6);
+  background: var(--warn-soft);
+  border: 1px solid var(--warn-border);
+  border-radius: var(--radius-xl);
+  font-size: 15px;
+  line-height: 1.55;
+  color: var(--text-secondary);
+}
+.aviso__selo {
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--warn);
+  border: 1px solid var(--warn-border);
+  background: var(--bg-surface);
+  border-radius: var(--radius-full);
+  padding: 5px 11px;
+  white-space: nowrap;
+}
+.aviso b { color: var(--text-primary); font-weight: 600; }
+
+/* galeria de telas */
+.telas {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(440px, 1fr));
+  gap: var(--s10) var(--s8);
+}
+.tela { margin: 0; display: flex; flex-direction: column; gap: var(--s4); }
+.tela__moldura {
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+  background: var(--bg-surface);
+  box-shadow: var(--shadow-md);
+  transition: transform .25s var(--ease), box-shadow .25s var(--ease);
+}
+.tela__moldura img { width: 100%; height: auto; display: block; }
+.tela:hover .tela__moldura { transform: translateY(-3px); box-shadow: var(--shadow-lg); }
+.tela figcaption { display: flex; flex-direction: column; gap: 4px; }
+.tela figcaption h3 { font-size: 1.02rem; font-weight: 600; letter-spacing: -.008em; }
+.tela figcaption p { font-size: 14.5px; color: var(--text-secondary); max-width: 52ch; }
+
 /* ══ LISTA DE ESPERA ══════════════════════════════════════════ */
 .lista { padding-block: var(--s20); background: var(--bg-surface); border-top: 1px solid var(--border-subtle); }
 .lista__grid {
@@ -585,6 +646,8 @@ h1, h2, h3 {
   .passo { grid-template-columns: 36px minmax(0, 1fr); gap: var(--s4); padding: var(--s5); }
   .passo__n { width: 36px; height: 36px; font-size: 13px; }
   .form { padding: var(--s6); }
+  .aviso { grid-template-columns: 1fr; padding: var(--s5); }
+  .telas { grid-template-columns: 1fr; gap: var(--s8); }
   .barra-mobile { display: block; }
   body { padding-bottom: 76px; }
   .footer__inner { flex-direction: column; align-items: flex-start; gap: var(--s6); }
