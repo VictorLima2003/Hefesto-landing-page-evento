@@ -40,13 +40,9 @@
   --accent-soft:     var(--navy-50);
 
   /* ── estado (cor = estado, nunca decoração) ── */
-  --ok:      #2f6b4f;
-  --ok-soft: #e3efe9;
-  --warn:        #8a6410;
-  --warn-soft:   #fbf4e3;
-  --warn-border: #e8d6ab;
-  --err:     #9a3f3f;
-  --err-soft:#f6e9e9;
+  --ok:       #2f6b4f;
+  --err:      #9a3f3f;
+  --err-soft: #f6e9e9;
 
   /* ── tipografia ── */
   --font-display: 'DM Sans', system-ui, -apple-system, 'Segoe UI', sans-serif;
@@ -431,38 +427,28 @@ h1, h2, h3 {
 
 /* ══ O SISTEMA POR DENTRO ═════════════════════════════════════ */
 .sistema { padding-block: var(--s20); background: var(--bg-app); }
-.sistema__head { max-width: 62ch; margin-bottom: var(--s6); }
+.sistema__head { max-width: 66ch; margin-bottom: var(--s12); }
 .sistema__head h2 { margin-block: var(--s5); }
 
-/* aviso de versão em desenvolvimento */
-.aviso {
+/* nota de versão em desenvolvimento — lida como ressalva técnica, não alarme */
+.nota {
   display: grid;
-  grid-template-columns: auto minmax(0, 1fr);
-  gap: var(--s3) var(--s4);
-  align-items: center;
-  max-width: 84ch;
-  margin-bottom: var(--s12);
-  padding: var(--s5) var(--s6);
-  background: var(--warn-soft);
-  border: 1px solid var(--warn-border);
-  border-radius: var(--radius-xl);
-  font-size: 15px;
-  line-height: 1.55;
+  gap: 6px;
+  max-width: 64ch;
+  margin-top: var(--s6);
+  padding-top: var(--s5);
+  border-top: 1px solid var(--border-default);
+  font-size: 14.5px;
+  line-height: 1.6;
   color: var(--text-secondary);
 }
-.aviso__selo {
+.nota__rotulo {
   font-family: var(--font-mono);
   font-size: 10.5px;
-  letter-spacing: .1em;
+  letter-spacing: .12em;
   text-transform: uppercase;
-  color: var(--warn);
-  border: 1px solid var(--warn-border);
-  background: var(--bg-surface);
-  border-radius: var(--radius-full);
-  padding: 5px 11px;
-  white-space: nowrap;
+  color: var(--text-tertiary);
 }
-.aviso b { color: var(--text-primary); font-weight: 600; }
 
 /* ── vitrine: uma tela grande por vez ───────────────────────── */
 .vitrine {
@@ -552,6 +538,15 @@ h1, h2, h3 {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+}
+/* a ressalva viaja junto com a imagem, para quem só olha a tela */
+.janela__tag {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--text-tertiary);
+  white-space: nowrap;
 }
 .janela__ampliar {
   margin-left: auto;
@@ -789,7 +784,7 @@ h1, h2, h3 {
   .passo { grid-template-columns: 36px minmax(0, 1fr); gap: var(--s4); padding: var(--s5); }
   .passo__n { width: 36px; height: 36px; font-size: 13px; }
   .form { padding: var(--s6); }
-  .aviso { grid-template-columns: 1fr; padding: var(--s5); }
+  .janela__tag { display: none; }
 
   /* No celular o trilho vira uma fita de abas acima da tela. */
   .vitrine { grid-template-columns: 1fr; gap: var(--s6); }

@@ -276,16 +276,16 @@ function Sistema() {
             Estas telas são do sistema rodando de verdade, com o parque fabril
             cadastrado. Não são maquete.
           </p>
-        </div>
 
-        <p className="aviso reveal">
-          <span className="aviso__selo">Versão em desenvolvimento</span>
-          <span>
-            O Hefesto está em estágio final de implementação. Estas imagens mostram a
-            versão de hoje — <b>a interface e a usabilidade ainda vão mudar até o
-            lançamento</b>, e nada do que aparece aqui é definitivo.
-          </span>
-        </p>
+          <p className="nota">
+            <span className="nota__rotulo">Nota · versão em desenvolvimento</span>
+            <span>
+              O Hefesto está em estágio final de implementação. A interface e a
+              usabilidade ainda vão mudar até o lançamento; nada do que aparece
+              aqui é definitivo.
+            </span>
+          </p>
+        </div>
 
         <div className="vitrine reveal">
           <div className="vitrine__trilho" role="tablist" aria-orientation="vertical"
@@ -313,6 +313,7 @@ function Sistema() {
               <div className="janela__barra">
                 <span className="janela__luzes" aria-hidden="true"><i /><i /><i /></span>
                 <span className="janela__rota">{tela.rota}</span>
+                <span className="janela__tag">em desenvolvimento</span>
                 <button type="button" className="janela__ampliar" onClick={() => setAmpliada(true)}>
                   Ampliar
                 </button>
