@@ -4,8 +4,9 @@ Página única para captar contatos de fábricas interessadas em testar o Hefest
 React + Vite, CSS com variáveis, hospedada na Cloudflare. Sem vídeo, sem
 biblioteca de animação: a cena do hero é SVG desenhado no navegador.
 
-- Estudo que originou as escolhas: [`docs/estudo-techmenow.md`](docs/estudo-techmenow.md)
 - Paleta e tipografia: navy/grafite do produto + DM Sans / Rethink Sans
+- O estudo que originou estas escolhas fica em `docs/estudo-techmenow.md`, fora
+  do versionamento: ele descreve o site de captação da TechMeNow que está no ar.
 
 ## Rodar na sua máquina
 

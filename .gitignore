@@ -4,3 +4,7 @@ dist
 .dev.vars
 *.local
 .DS_Store
+
+# Estudo interno: descreve o site de captacao da TechMeNow que esta no ar,
+# inclusive pontos fracos. Fica so na maquina.
+docs/estudo-techmenow.md
