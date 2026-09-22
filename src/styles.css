@@ -340,10 +340,33 @@ h1, h2, h3 {
 
 /* ══ O QUE ELE NÃO FAZ — seção escura ═════════════════════════ */
 .naofaz {
+  /* ajustes da marca d'água — mexer só nestes três */
+  --marca-tam: min(86%, 560px);   /* altura do "h" */
+  --marca-giro: -32deg;
+  --marca-op: .06;
+
+  position: relative;
+  overflow: hidden;
   padding-block: var(--s20);
   background: var(--navy-950);
   color: #eef1f6;
 }
+.naofaz > .container { position: relative; z-index: 1; }
+
+.naofaz__marca {
+  position: absolute;
+  right: -2%;
+  top: 42%;
+  height: var(--marca-tam);
+  width: auto;
+  color: #ffffff;
+  opacity: var(--marca-op);
+  transform: translateY(-50%) rotate(var(--marca-giro));
+  transform-origin: center;
+  pointer-events: none;
+  user-select: none;
+}
+.naofaz__marca svg { height: 100%; width: auto; display: block; }
 .naofaz .eyebrow { color: var(--navy-300); }
 .naofaz h2 { color: #ffffff; }
 .naofaz__head { max-width: 62ch; margin-bottom: var(--s12); }
@@ -541,6 +564,8 @@ h1, h2, h3 {
 @media (max-width: 768px) {
   :root { --s20: 64px; --s16: 48px; }
   .nav__badge { display: none; }
+  .naofaz { --marca-tam: min(42%, 400px); --marca-op: .05; }
+  .naofaz__marca { right: -14%; top: 26%; }
   .passo { grid-template-columns: 36px minmax(0, 1fr); gap: var(--s4); padding: var(--s5); }
   .passo__n { width: 36px; height: 36px; font-size: 13px; }
   .form { padding: var(--s6); }

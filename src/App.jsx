@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import wordmarkSvg from '@/assets/hefesto-wordmark.svg?raw'
+import hSvg from '@/assets/hefesto-h.svg?raw'
 import AnimacaoCNC from '@/components/AnimacaoCNC'
 import ListaDeEspera from '@/components/ListaDeEspera'
 
@@ -180,6 +181,9 @@ const NAOFAZ = [
 function NaoFaz() {
   return (
     <section className="naofaz" id="confianca">
+      {/* Marca d'água: o "h" do logotipo deitado, saindo pela borda. */}
+      <span className="naofaz__marca" aria-hidden="true"
+            dangerouslySetInnerHTML={{ __html: hSvg }} />
       <div className="container">
         <div className="naofaz__head reveal">
           <span className="eyebrow">Confiança</span>
