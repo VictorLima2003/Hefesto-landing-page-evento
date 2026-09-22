@@ -117,23 +117,6 @@ button, input { font: inherit; color: inherit; }
 .wordmark { display: block; height: 24px; color: inherit; }
 .wordmark svg { height: 100%; width: auto; display: block; }
 
-.eyebrow {
-  display: inline-flex;
-  align-items: center;
-  gap: var(--s2);
-  font-family: var(--font-mono);
-  font-size: 11px;
-  letter-spacing: .12em;
-  text-transform: uppercase;
-  color: var(--text-tertiary);
-}
-.eyebrow::before {
-  content: '';
-  width: 6px; height: 6px;
-  border-radius: 50%;
-  background: var(--ok);
-  flex-shrink: 0;
-}
 
 h1, h2, h3 {
   font-family: var(--font-display);
@@ -256,7 +239,7 @@ h1, h2, h3 {
 }
 .hero__h1 {
   font-size: clamp(2.1rem, 5vw, 3.6rem);
-  margin-block: var(--s5) var(--s5);
+  margin-bottom: var(--s5);
   color: var(--navy-900);
 }
 .hero__h1 em { font-style: normal; color: var(--accent); }
@@ -278,10 +261,25 @@ h1, h2, h3 {
 .problema__head { max-width: 62ch; margin-bottom: var(--s12); }
 .problema__list {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-  gap: var(--s8);
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: var(--s4);
 }
-.problema__item { display: flex; flex-direction: column; gap: var(--s3); }
+.problema__item {
+  display: flex;
+  flex-direction: column;
+  gap: var(--s3);
+  padding: var(--s6);
+  background: var(--bg-subtle);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-xl);
+  transition: border-color .22s var(--ease), background .22s var(--ease),
+              transform .22s var(--ease);
+}
+.problema__item:hover {
+  background: var(--bg-surface);
+  border-color: var(--border-default);
+  transform: translateY(-2px);
+}
 .problema__item h3 {
   font-size: 1.06rem;
   font-weight: 600;
@@ -289,11 +287,6 @@ h1, h2, h3 {
   line-height: 1.35;
 }
 .problema__item p { color: var(--text-secondary); font-size: 15px; }
-.problema__rule {
-  width: 28px; height: 2px;
-  background: var(--accent);
-  border-radius: 2px;
-}
 
 /* ══ COMO FUNCIONA ════════════════════════════════════════════ */
 .como { padding-block: var(--s20); }
@@ -384,7 +377,6 @@ h1, h2, h3 {
   user-select: none;
 }
 .naofaz__marca svg { height: 100%; width: auto; display: block; }
-.naofaz .eyebrow { color: var(--navy-300); }
 .naofaz h2 { color: #ffffff; }
 .naofaz__head { max-width: 62ch; margin-bottom: var(--s12); }
 .naofaz__lede { color: var(--navy-300); font-size: clamp(1rem, 1.5vw, 1.15rem); max-width: 58ch; }
@@ -432,14 +424,14 @@ h1, h2, h3 {
   border-bottom: 1px solid var(--border-subtle);
 }
 .agentes__head { max-width: 62ch; margin-bottom: var(--s12); }
-.agentes__head h2 { margin-block: var(--s5); }
+.agentes__head h2 { margin-bottom: var(--s5); }
 .agentes__cena { display: flex; justify-content: center; }
 .agentes__cena > * { max-width: 1000px; }
 
 /* ══ O SISTEMA POR DENTRO ═════════════════════════════════════ */
 .sistema { padding-block: var(--s20); background: var(--bg-app); }
 .sistema__head { max-width: 66ch; margin-bottom: var(--s12); }
-.sistema__head h2 { margin-block: var(--s5); }
+.sistema__head h2 { margin-bottom: var(--s5); }
 
 /* nota de versão em desenvolvimento — lida como ressalva técnica, não alarme */
 .nota {
@@ -659,7 +651,7 @@ h1, h2, h3 {
   gap: var(--s16);
   align-items: start;
 }
-.lista__head h2 { margin-block: var(--s5) var(--s5); }
+.lista__head h2 { margin-bottom: var(--s5); }
 .lista__pontos { display: grid; gap: var(--s4); margin-top: var(--s8); }
 .lista__ponto { display: grid; grid-template-columns: 20px 1fr; gap: var(--s3); align-items: start; font-size: 15px; color: var(--text-secondary); }
 .lista__ponto svg { color: var(--ok); margin-top: 3px; }

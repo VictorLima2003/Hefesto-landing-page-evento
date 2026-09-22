@@ -55,7 +55,6 @@ function Hero() {
     <section className="hero" id="topo">
       <div className="container hero__grid">
         <div>
-          <span className="eyebrow">Programação CNC assistida</span>
           <h1 className="hero__h1">O programa sai com as <em>regras da sua fábrica</em>.</h1>
           <p className="lede hero__lede">
             O Hefesto lê o desenho, consulta o que você cadastrou — suas máquinas, seus dispositivos,
@@ -94,15 +93,13 @@ function Problema() {
     <section className="problema" id="problema">
       <div className="container">
         <div className="problema__head reveal">
-          <span className="eyebrow">O problema</span>
-          <h2 className="h2" style={{ marginTop: 'var(--s5)' }}>
+          <h2 className="h2">
             Hoje o programa mora na cabeça de uma pessoa.
           </h2>
         </div>
         <div className="problema__list">
           {PROBLEMAS.map(p => (
             <article className="problema__item reveal" key={p.t}>
-              <span className="problema__rule" aria-hidden="true" />
               <h3>{p.t}</h3>
               <p>{p.d}</p>
             </article>
@@ -142,8 +139,7 @@ function Como() {
     <section className="como" id="como">
       <div className="container como__inner">
         <div className="como__head reveal">
-          <span className="eyebrow">Como funciona</span>
-          <h2 className="h2" style={{ marginBlock: 'var(--s5)' }}>
+          <h2 className="h2" style={{ marginBottom: 'var(--s5)' }}>
             Você ensina a sua fábrica. Ele não esquece.
           </h2>
           <p className="lede">
@@ -191,8 +187,7 @@ function NaoFaz() {
             dangerouslySetInnerHTML={{ __html: hSvg }} />
       <div className="container">
         <div className="naofaz__head reveal">
-          <span className="eyebrow">Confiança</span>
-          <h2 className="h2" style={{ marginBlock: 'var(--s5)' }}>O que ele não faz.</h2>
+          <h2 className="h2" style={{ marginBottom: 'var(--s5)' }}>O que ele não faz.</h2>
           <p className="naofaz__lede">
             Num programa CNC, o erro não volta atrás — quebra ferramenta, perde peça, para a máquina.
             Por isso o Hefesto foi desenhado para recuar quando não tem certeza.
@@ -221,7 +216,6 @@ function Agentes() {
     <section className="agentes" id="agentes">
       <div className="container">
         <div className="agentes__head reveal">
-          <span className="eyebrow">Por dentro</span>
           <h2 className="h2">Não é um robô só. São especialistas.</h2>
           <p className="lede">
             Cada parte do problema tem um agente que entende dela: a máquina, o
@@ -293,7 +287,6 @@ function Sistema() {
     <section className="sistema" id="sistema">
       <div className="container">
         <div className="sistema__head reveal">
-          <span className="eyebrow">O sistema hoje</span>
           <h2 className="h2">Por dentro do Hefesto.</h2>
           <p className="lede">
             Estas telas são do sistema rodando de verdade, com o parque fabril
@@ -395,7 +388,6 @@ function Lista() {
     <section className="lista" id="lista">
       <div className="container lista__grid">
         <div className="lista__head reveal">
-          <span className="eyebrow">Lista de espera</span>
           <h2 className="h2">Quer testar quando abrir?</h2>
           <p className="lede">
             Vamos abrir para um grupo pequeno de fábricas. Deixe seu contato e a gente chama
