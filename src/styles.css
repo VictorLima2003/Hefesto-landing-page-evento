@@ -302,6 +302,22 @@ h1, h2, h3 {
   gap: var(--s3);
   counter-reset: passo;
 }
+
+/* No desktop o título fica preso enquanto os passos passam por ele. */
+@media (min-width: 1000px) {
+  .como__inner {
+    display: grid;
+    grid-template-columns: minmax(0, 340px) minmax(0, 1fr);
+    gap: var(--s12);
+    align-items: start;
+  }
+  .como__head {
+    position: sticky;
+    top: calc(var(--nav-h) + var(--s12));
+    margin-bottom: 0;
+  }
+  .passos { gap: var(--s4); }
+}
 .passo {
   counter-increment: passo;
   display: grid;

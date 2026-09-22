@@ -115,40 +115,44 @@ function Problema() {
 // ── Como funciona ────────────────────────────────────────────────────────────
 const PASSOS = [
   {
-    t: 'Você cadastra sua fábrica uma vez',
-    d: 'Máquinas e comandos, dispositivos de fixação, cavidades especiais. E o dialeto da controladora: você cola um programa que já roda e ele aprende o jeito da sua máquina.',
+    t: 'Cadastre a sua fábrica',
+    d: 'Máquinas e comandos, ferramentas, dispositivos de fixação. Dá para puxar do sistema que você já usa ou cadastrar na mão — e é uma vez só: o que entra aqui vale para toda peça que vier depois.',
   },
   {
-    t: 'Ele lê o desenho',
-    d: 'Furos, roscas, profundidades e a tabela de furação — inclusive quando o furo ocupa duas linhas da tabela.',
+    t: 'Guarde o que se repete',
+    d: 'As operações de rotina viram receita. Você cadastra a cavidade uma vez, com as ferramentas e a ordem certa, e ela passa a ser reconhecida pela designação no desenho.',
   },
   {
-    t: 'Monta o programa com as suas regras',
-    d: 'Zero-peça calculado pelo dispositivo, um programa por fixação, e os ciclos da sua controladora — não um G-code genérico.',
+    t: 'Ensine o jeito da casa',
+    d: 'Cole programas que já rodaram e foram aprovados. O Hefesto aprende o padrão de escrita e as práticas da sua controladora — o programa sai parecido com o que o seu pessoal escreve, não com G-code de manual.',
   },
   {
-    t: 'Para onde não sabe',
-    d: 'Ferramenta sem cadastro, cavidade desconhecida, ponto-zero não confirmado: ele marca a operação, diz o que falta e espera você.',
+    t: 'Suba o projeto',
+    d: 'Ele lê o desenho, cruza com o que está cadastrado e monta o programa: zero-peça pelo dispositivo, um programa por fixação, os ciclos da sua máquina. Onde falta informação, para e pergunta.',
   },
   {
-    t: 'Você revisa e leva para a máquina',
-    d: 'Com a folha de processo junto: zero, sequência de faces, ferramentas e o que conferir. A assinatura é sua.',
+    t: 'Valide o retorno',
+    d: 'O que você corrigir na revisão volta para o cadastro. Cada peça que passa por aqui deixa a próxima mais rápida — o sistema aprende com a sua fábrica, não contra ela.',
   },
 ]
 
 function Como() {
   return (
     <section className="como" id="como">
-      <div className="container">
+      <div className="container como__inner">
         <div className="como__head reveal">
           <span className="eyebrow">Como funciona</span>
-          <h2 className="h2" style={{ marginTop: 'var(--s5)' }}>
-            Do desenho ao programa, sem pular a sua regra.
+          <h2 className="h2" style={{ marginBlock: 'var(--s5)' }}>
+            Você ensina a sua fábrica. Ele não esquece.
           </h2>
+          <p className="lede">
+            Os três primeiros passos são de cadastro e você faz uma vez.
+            Do quarto em diante é o dia a dia.
+          </p>
         </div>
         <div className="passos">
-          {PASSOS.map(p => (
-            <article className="passo reveal" key={p.t}>
+          {PASSOS.map((p, i) => (
+            <article className="passo reveal" key={p.t} style={{ '--i': i }}>
               <span className="passo__n" aria-hidden="true" />
               <div>
                 <h3>{p.t}</h3>
