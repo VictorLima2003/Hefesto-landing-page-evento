@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import wordmarkSvg from '@/assets/hefesto-wordmark.svg?raw'
 import hSvg from '@/assets/hefesto-h.svg?raw'
 import AnimacaoCNC from '@/components/AnimacaoCNC'
@@ -219,26 +219,53 @@ const TELAS = [
   {
     arq: 'ordens-de-producao',
     titulo: 'Ordens de produção',
+    rota: '/ordens',
     d: 'A fila da fábrica, ordenada por atraso e urgência. O que estourou o prazo aparece em vermelho antes de qualquer outra coisa.',
   },
   {
     arq: 'cadastro-de-maquinas',
     titulo: 'Máquinas',
+    rota: '/maquinas',
     d: 'Cada centro com seu comando, número de eixos e curso. É daqui que sai a regra que o programa vai obedecer.',
   },
   {
     arq: 'cadastro-de-dispositivos',
     titulo: 'Dispositivos de fixação',
+    rota: '/dispositivos',
     d: 'Morsas, placas, divisores e batentes especiais, com vida útil e inspeção. O dispositivo é quem define o zero-peça.',
   },
   {
     arq: 'agentcode',
     titulo: 'AgentCode',
+    rota: '/agentcode',
     d: 'O agente antes de receber o desenho: recortar as faces, conferir o contrato, gerar o programa.',
   },
 ]
 
 function Sistema() {
+  const [ativa, setAtiva] = useState(0)
+  const [ampliada, setAmpliada] = useState(false)
+  const trilho = useRef(null)
+  const dialogo = useRef(null)
+  const tela = TELAS[ativa]
+
+  // <dialog> nativo: o Esc e o foco preso já vêm de graça do navegador.
+  useEffect(() => {
+    const d = dialogo.current
+    if (!d) return
+    if (ampliada && !d.open) d.showModal()
+    else if (!ampliada && d.open) d.close()
+  }, [ampliada])
+
+  function navegarPorTeclado(e) {
+    const passo = { ArrowDown: 1, ArrowRight: 1, ArrowUp: -1, ArrowLeft: -1 }[e.key]
+    if (!passo) return
+    e.preventDefault()
+    const proxima = (ativa + passo + TELAS.length) % TELAS.length
+    setAtiva(proxima)
+    trilho.current?.querySelectorAll('button')[proxima]?.focus()
+  }
+
   return (
     <section className="sistema" id="sistema">
       <div className="container">
@@ -246,7 +273,7 @@ function Sistema() {
           <span className="eyebrow">O sistema hoje</span>
           <h2 className="h2">Por dentro do Hefesto.</h2>
           <p className="lede">
-            As telas abaixo são do sistema rodando de verdade, com o parque fabril
+            Estas telas são do sistema rodando de verdade, com o parque fabril
             cadastrado. Não são maquete.
           </p>
         </div>
@@ -260,24 +287,71 @@ function Sistema() {
           </span>
         </p>
 
-        <div className="telas">
-          {TELAS.map(t => (
-            <figure className="tela reveal" key={t.arq}>
-              <div className="tela__moldura">
-                <img
-                  src={`/assets/telas/${t.arq}.webp`}
-                  alt={`Tela de ${t.titulo} do Hefesto`}
-                  width="1800" height="1143"
-                  loading="lazy" decoding="async"
-                />
+        <div className="vitrine reveal">
+          <div className="vitrine__trilho" role="tablist" aria-orientation="vertical"
+               aria-label="Telas do sistema" ref={trilho} onKeyDown={navegarPorTeclado}>
+            {TELAS.map((t, i) => (
+              <button
+                key={t.arq}
+                type="button"
+                role="tab"
+                id={`aba-${t.arq}`}
+                aria-controls="palco-telas"
+                aria-selected={i === ativa}
+                tabIndex={i === ativa ? 0 : -1}
+                className="vitrine__aba"
+                onClick={() => setAtiva(i)}
+              >
+                <span className="vitrine__titulo">{t.titulo}</span>
+                <span className="vitrine__rota">{t.rota}</span>
+              </button>
+            ))}
+          </div>
+
+          <div className="vitrine__palco">
+            <div className="janela">
+              <div className="janela__barra">
+                <span className="janela__luzes" aria-hidden="true"><i /><i /><i /></span>
+                <span className="janela__rota">{tela.rota}</span>
+                <button type="button" className="janela__ampliar" onClick={() => setAmpliada(true)}>
+                  Ampliar
+                </button>
               </div>
-              <figcaption>
-                <h3>{t.titulo}</h3>
-                <p>{t.d}</p>
-              </figcaption>
-            </figure>
-          ))}
+              <div className="janela__tela" id="palco-telas" role="tabpanel"
+                   aria-labelledby={`aba-${tela.arq}`}>
+                {TELAS.map((t, i) => (
+                  <img
+                    key={t.arq}
+                    src={`/assets/telas/${t.arq}.webp`}
+                    alt={i === ativa ? `Tela de ${t.titulo} do Hefesto` : ''}
+                    className={i === ativa ? 'is-ativa' : undefined}
+                    aria-hidden={i === ativa ? undefined : 'true'}
+                    width="1800" height="1143"
+                    loading="lazy" decoding="async"
+                  />
+                ))}
+              </div>
+            </div>
+            <p className="vitrine__legenda">{tela.d}</p>
+          </div>
         </div>
+
+        <dialog className="lupa" ref={dialogo} onClose={() => setAmpliada(false)}
+                onClick={e => { if (e.target === dialogo.current) setAmpliada(false) }}>
+          <div className="lupa__topo">
+            <span className="lupa__nome">{tela.titulo} <i>{tela.rota}</i></span>
+            <button type="button" className="lupa__fechar" onClick={() => setAmpliada(false)}>
+              Fechar
+            </button>
+          </div>
+          <div className="lupa__rolagem">
+            {ampliada && (
+              <img src={`/assets/telas/${tela.arq}.webp`}
+                   alt={`Tela de ${tela.titulo} do Hefesto, ampliada`}
+                   width="1800" height="1143" />
+            )}
+          </div>
+        </dialog>
       </div>
     </section>
   )
