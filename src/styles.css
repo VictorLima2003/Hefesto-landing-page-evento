@@ -425,6 +425,17 @@ h1, h2, h3 {
 }
 .naofaz__foot b { color: #ffffff; font-weight: 600; }
 
+/* ══ OS AGENTES ═══════════════════════════════════════════════ */
+.agentes {
+  padding-block: var(--s20);
+  background: var(--bg-surface);
+  border-bottom: 1px solid var(--border-subtle);
+}
+.agentes__head { max-width: 62ch; margin-bottom: var(--s12); }
+.agentes__head h2 { margin-block: var(--s5); }
+.agentes__cena { display: flex; justify-content: center; }
+.agentes__cena > * { max-width: 1000px; }
+
 /* ══ O SISTEMA POR DENTRO ═════════════════════════════════════ */
 .sistema { padding-block: var(--s20); background: var(--bg-app); }
 .sistema__head { max-width: 66ch; margin-bottom: var(--s12); }

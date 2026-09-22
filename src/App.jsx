@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react'
 import wordmarkSvg from '@/assets/hefesto-wordmark.svg?raw'
 import hSvg from '@/assets/hefesto-h.svg?raw'
 import AnimacaoCNC from '@/components/AnimacaoCNC'
+import AnimacaoPipeline from '@/components/AnimacaoPipeline'
 import ListaDeEspera from '@/components/ListaDeEspera'
 
 const ANO = new Date().getFullYear()
@@ -209,6 +210,28 @@ function NaoFaz() {
         <p className="naofaz__foot">
           <span>Em desenvolvimento, <b>validado peça a peça com um usineiro de verdade</b>.</span>
         </p>
+      </div>
+    </section>
+  )
+}
+
+// ── Os agentes ───────────────────────────────────────────────────────────────
+function Agentes() {
+  return (
+    <section className="agentes" id="agentes">
+      <div className="container">
+        <div className="agentes__head reveal">
+          <span className="eyebrow">Por dentro</span>
+          <h2 className="h2">Não é um robô só. São especialistas.</h2>
+          <p className="lede">
+            Cada parte do problema tem um agente que entende dela: a máquina, o
+            ferramental, o processo, a programação e o jeito da casa. Nada segue
+            sem a sua aprovação — e o que você corrige volta para a base.
+          </p>
+        </div>
+        <div className="agentes__cena reveal">
+          <AnimacaoPipeline />
+        </div>
       </div>
     </section>
   )
@@ -461,6 +484,7 @@ export default function App() {
         <Problema />
         <Como />
         <NaoFaz />
+        <Agentes />
         <Sistema />
         <Lista />
       </main>

@@ -1,0 +1,138 @@
+/* Pipeline dos agentes — paleta retonada para o navy do produto. */
+
+.pipe {
+  --pi-papel:   #ffffff;
+  --pi-ink:     #1b2437;
+  --pi-fraco:   #566076;
+  --pi-borda:   #dce2ec;
+  --pi-linha:   #c6cedd;
+  --pi-grade:   #e9edf3;
+  --pi-sutil:   #f7f9fc;
+  --pi-ok:      #2f6b4f;
+  --pi-ok-borda:#a8ccb8;
+
+  margin: 0;
+  width: 100%;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-xl);
+  box-shadow: 0 1px 2px rgba(27, 36, 55, .05),
+              0 12px 28px rgba(27, 36, 55, .06);
+  overflow: hidden;
+}
+
+.pipe__cap {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  padding: 12px 16px 10px;
+  border-bottom: 1px solid var(--border-subtle);
+  font-size: 13.5px;
+  color: var(--text-secondary);
+}
+.pipe__dot { width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0; }
+.pipe__dot--andamento { background: #8a6410; }
+.pipe__dot--ok        { background: var(--pi-ok); }
+
+.pipe__palco {
+  background: var(--pi-papel);
+  border-bottom: 1px solid var(--border-subtle);
+  padding: 8px 10px 2px;
+}
+.pipe__svg {
+  width: 100%;
+  height: auto;
+  display: block;
+  font-family: var(--font-body);
+}
+
+/* a frase que resume o fluxo */
+.pipe__resumo {
+  display: flex;
+  flex-direction: column;
+  gap: var(--s2);
+  padding: 14px 16px 12px;
+  border-bottom: 1px solid var(--border-subtle);
+}
+.pipe__filete { height: 1px; background: var(--border-default); }
+.pipe__resumo p {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 6px 10px;
+  margin: 0;
+  max-width: none;
+  font-family: var(--font-display);
+  font-size: clamp(.95rem, 2.2vw, 1.06rem);
+  line-height: 1.35;
+  letter-spacing: -.008em;
+  color: var(--text-primary);
+}
+.pipe__resumo i { font-style: normal; color: var(--text-tertiary); }
+.pipe__resumo b { font-weight: 700; }
+
+/* barra de etapas */
+.pipe__barra {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+  padding: 9px 16px 10px;
+  background: var(--bg-subtle);
+}
+.pipe__etapas { display: flex; gap: 4px; flex-shrink: 0; }
+.pipe__etapas i {
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: var(--border-default);
+}
+.pipe__etapas i.is-feita { background: var(--text-primary); }
+.pipe__etapas i.is-ok    { background: var(--pi-ok); }
+
+.pipe__etapa-nome {
+  flex: 1;
+  min-width: 0;
+  font-size: 12px;
+  color: var(--text-secondary);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.pipe__botoes { display: flex; gap: 6px; flex-shrink: 0; margin-left: auto; }
+.pipe__botoes button {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-md);
+  color: var(--text-primary);
+  font-family: var(--font-body);
+  font-size: 12px;
+  padding: 6px 11px;
+  cursor: pointer;
+  min-width: 82px;
+  transition: border-color .15s var(--ease);
+}
+.pipe__botoes button:hover { border-color: var(--border-strong); }
+
+.pipe__arraste { display: none; }
+
+/* No celular o desenho é largo demais: vira rolagem lateral própria. */
+@media (max-width: 768px) {
+  .pipe__palco {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+  .pipe__svg { width: 820px; max-width: none; }
+  .pipe__etapa-nome { order: 3; flex-basis: 100%; }
+  .pipe__arraste {
+    display: block;
+    margin: 0;
+    padding: 8px 16px;
+    border-bottom: 1px solid var(--border-subtle);
+    font-family: var(--font-mono);
+    font-size: 10.5px;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    color: var(--text-tertiary);
+  }
+  .pipe__arraste::after { content: ' →'; }
+}
