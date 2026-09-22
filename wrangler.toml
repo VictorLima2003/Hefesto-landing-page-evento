@@ -1,0 +1,18 @@
+name = "hefesto-landing"
+main = "worker.js"
+compatibility_date = "2026-06-06"
+compatibility_flags = ["nodejs_compat"]
+
+[assets]
+directory = "./dist"
+binding = "ASSETS"
+
+# SHEET_URL e SHEET_TOKEN NÃO entram aqui — são segredos.
+# Cadastre com:
+#   npx wrangler secret put SHEET_URL
+#   npx wrangler secret put SHEET_TOKEN
+#
+# Para rodar o Worker local (`npx wrangler dev`), crie um arquivo .dev.vars
+# na raiz — ele já está no .gitignore:
+#   SHEET_URL="https://script.google.com/macros/s/.../exec"
+#   SHEET_TOKEN="uma-frase-secreta"
