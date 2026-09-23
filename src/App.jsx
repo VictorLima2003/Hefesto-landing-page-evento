@@ -95,11 +95,16 @@ function Hero() {
       <div className="container hero__grid">
         <div className="hero__copy">
           <h1 ref={titulo} className={`hero__h1${naTela ? ' is-dentro' : ''}`}>
-            IA generativa como copiloto da sua programação CNC.
+            A inteligência artificial que programa no CNC seguindo o padrão da sua fábrica.
           </h1>
+          <p className={`hero__sub${naTela ? ' is-dentro' : ''}`}>
+            Conecte as máquinas, ferramentas e dispositivos que a fábrica já usa. O Hefesto
+            aprende com os programas que a sua equipe aprovou e escreve o código dentro
+            dessas regras.
+          </p>
           <div className="hero__actions">
             <a className="btn" href="#lista">Entrar na lista de espera</a>
-            <span className="hero__note">Leva 20 segundos. Sem compromisso.</span>
+            <span className="hero__note">Cadastro em 20 segundos. Sem compromisso.</span>
           </div>
         </div>
         <AnimacaoCNC />
@@ -111,16 +116,16 @@ function Hero() {
 // ── O problema ───────────────────────────────────────────────────────────────
 const PROBLEMAS = [
   {
-    t: 'Quem programa é sempre o mesmo',
-    d: 'Se ele falta, tira férias ou sai da empresa, a máquina espera. O conhecimento não está em lugar nenhum além da cabeça dele.',
+    t: 'A programação depende sempre das mesmas pessoas',
+    d: 'Férias, afastamento ou desligamento de um programador experiente interrompem a produção. O critério que ele aplica não está registrado em nenhum sistema.',
   },
   {
-    t: 'A regra da casa não está no sistema',
-    d: 'Está no caderno, no post-it, no programa antigo que alguém salvou. Cada um aplica do seu jeito, e ninguém confere.',
+    t: 'O padrão da empresa não está documentado',
+    d: 'Ele vive em anotações pessoais, em planilhas e em programas antigos arquivados. Cada profissional aplica o próprio critério, e não existe conferência.',
   },
   {
-    t: 'Peça parecida recomeça do zero',
-    d: 'Mesmo material, mesma família, mesmo dispositivo — e o programa é escrito de novo, linha por linha, como se fosse a primeira vez.',
+    t: 'Peças semelhantes são reprogramadas do zero',
+    d: 'Mesmo material, mesma família de peça e mesmo dispositivo de fixação. Ainda assim o programa é reescrito linha por linha, sem aproveitar nada do que já foi validado.',
   },
 ]
 
@@ -130,7 +135,7 @@ function Problema() {
       <div className="container">
         <div className="problema__head reveal">
           <h2 className="h2">
-            Hoje o programa mora na cabeça de uma pessoa.
+            O conhecimento técnico da sua fábrica está retido na memória de poucos profissionais.
           </h2>
         </div>
         <div className="problema__list">
@@ -150,23 +155,23 @@ function Problema() {
 const PASSOS = [
   {
     t: 'Cadastre a sua fábrica',
-    d: 'Máquinas e comandos, ferramentas, dispositivos de fixação. Dá para puxar do sistema que você já usa ou cadastrar na mão — e é uma vez só: o que entra aqui vale para toda peça que vier depois.',
+    d: 'Máquinas e comandos, ferramentas e dispositivos de fixação. A importação pode partir dos sistemas que você já utiliza ou ser feita manualmente. É uma configuração única, válida para todas as peças seguintes.',
   },
   {
-    t: 'Guarde o que se repete',
-    d: 'As operações de rotina viram receita. Você cadastra a cavidade uma vez, com as ferramentas e a ordem certa, e ela passa a ser reconhecida pela designação no desenho.',
+    t: 'Registre as operações recorrentes',
+    d: 'As rotinas da fábrica viram cadastro. A cavidade é configurada uma única vez, com as ferramentas e a sequência corretas, e passa a ser reconhecida pela designação indicada no desenho.',
   },
   {
-    t: 'Ensine o jeito da casa',
-    d: 'Cole programas que já rodaram e foram aprovados. O Hefesto aprende o padrão de escrita e as práticas da sua controladora — o programa sai parecido com o que o seu pessoal escreve, não com G-code de manual.',
+    t: 'Importe os programas já aprovados',
+    d: 'O sistema analisa programas que já rodaram na sua fábrica e absorve o padrão de escrita e as práticas da sua controladora. O código gerado sai no formato que a sua equipe reconhece, e não no G-code genérico de manual.',
   },
   {
     t: 'Suba o projeto',
-    d: 'Ele lê o desenho, cruza com o que está cadastrado e monta o programa: zero-peça pelo dispositivo, um programa por fixação, os ciclos da sua máquina. Onde falta informação, para e pergunta.',
+    d: 'O sistema lê o desenho, cruza as informações com o cadastro e monta o programa: zero-peça definido pelo dispositivo, um programa por fixação e os ciclos da máquina selecionada. Quando falta informação, ele interrompe e pergunta.',
   },
   {
     t: 'Valide o retorno',
-    d: 'O que você corrigir na revisão volta para o cadastro. Cada peça que passa por aqui deixa a próxima mais rápida — o sistema aprende com a sua fábrica, não contra ela.',
+    d: 'As correções feitas na revisão retornam ao cadastro. Cada peça processada encurta o tempo da próxima, porque o critério da sua fábrica passa a fazer parte da base.',
   },
 ]
 
@@ -176,11 +181,11 @@ function Como() {
       <div className="container como__inner">
         <div className="como__head reveal">
           <h2 className="h2" style={{ marginBottom: 'var(--s5)' }}>
-            Você ensina a sua fábrica. Ele não esquece.
+            Você configura uma vez. O sistema aplica em todas as peças.
           </h2>
           <p className="lede">
-            Os três primeiros passos são de cadastro e você faz uma vez.
-            Do quarto em diante é o dia a dia.
+            Os três primeiros passos são de configuração e acontecem uma única vez.
+            Do quarto em diante, é a rotina de produção.
           </p>
         </div>
         <div className="passos">
@@ -202,16 +207,16 @@ function Como() {
 // ── O que ele não faz ────────────────────────────────────────────────────────
 const NAOFAZ = [
   {
-    t: 'Não inventa parâmetro de corte',
-    d: 'Ferramenta sem cadastro? Ele avisa que falta o avanço e a rotação. Não chuta um número para preencher a linha.',
+    t: 'Não estima parâmetros de corte',
+    d: 'Se a ferramenta não tem avanço e rotação cadastrados, o sistema sinaliza a ausência e interrompe a geração. Nenhum valor é arbitrado para completar a linha.',
   },
   {
     t: 'Não gera o que não consegue validar',
-    d: 'Operação que ele não sabe conferir, ele não escreve. Prefere parar e explicar a entregar programa errado.',
+    d: 'Operações que o sistema não é capaz de conferir não são escritas. A execução para no ponto exato e informa qual verificação não foi possível.',
   },
   {
     t: 'Não substitui o programador',
-    d: 'O que sai é um rascunho revisável, com a memória de cálculo à vista. Quem aprova e manda para a máquina é você.',
+    d: 'A saída é um programa em rascunho, com a memória de cálculo disponível para auditoria. A aprovação e o envio à máquina continuam sendo decisão da sua equipe.',
   },
 ]
 
@@ -223,10 +228,11 @@ function NaoFaz() {
             dangerouslySetInnerHTML={{ __html: hSvg }} />
       <div className="container">
         <div className="naofaz__head reveal">
-          <h2 className="h2" style={{ marginBottom: 'var(--s5)' }}>O que ele não faz.</h2>
+          <h2 className="h2" style={{ marginBottom: 'var(--s5)' }}>O que o Hefesto não faz.</h2>
           <p className="naofaz__lede">
-            Num programa CNC, o erro não volta atrás — quebra ferramenta, perde peça, para a máquina.
-            Por isso o Hefesto foi desenhado para recuar quando não tem certeza.
+            No chão de fábrica, um erro de programa não se corrige depois: ele quebra ferramenta, perde material
+            e para a máquina. Por isso o Hefesto foi projetado para interromper o processo sempre que não tiver
+            informação suficiente para decidir.
           </p>
         </div>
         <div className="naofaz__list">
@@ -239,7 +245,7 @@ function NaoFaz() {
           ))}
         </div>
         <p className="naofaz__foot">
-          <span>Em desenvolvimento, <b>validado peça a peça com um usineiro de verdade</b>.</span>
+          <span>Em desenvolvimento, com <b>validação peça a peça conduzida ao lado de um usineiro em atividade</b>.</span>
         </p>
       </div>
     </section>
@@ -252,11 +258,11 @@ function Agentes() {
     <section className="agentes" id="agentes">
       <div className="container">
         <div className="agentes__head reveal">
-          <h2 className="h2">Não é um robô só. São especialistas.</h2>
+          <h2 className="h2">Não é um único modelo. São agentes especializados.</h2>
           <p className="lede">
-            Cada parte do problema tem um agente que entende dela: a máquina, o
-            ferramental, o processo, a programação e o jeito da casa. Nada segue
-            sem a sua aprovação — e o que você corrige volta para a base.
+            Cada etapa do processo é conduzida por um agente especializado: máquina,
+            ferramental, processo, programação e o padrão da empresa. Nenhuma etapa
+            avança sem aprovação, e toda correção retorna para a base de conhecimento.
           </p>
         </div>
         <div className="agentes__cena reveal">
@@ -273,25 +279,25 @@ const TELAS = [
     arq: 'ordens-de-producao',
     titulo: 'Ordens de produção',
     rota: '/ordens',
-    d: 'A fila da fábrica, ordenada por atraso e urgência. O que estourou o prazo aparece em vermelho antes de qualquer outra coisa.',
+    d: 'A fila de produção ordenada por atraso e prioridade. Ordens fora do prazo são sinalizadas em vermelho no topo da lista.',
   },
   {
     arq: 'cadastro-de-maquinas',
     titulo: 'Máquinas',
     rota: '/maquinas',
-    d: 'Cada centro com seu comando, número de eixos e curso. É daqui que sai a regra que o programa vai obedecer.',
+    d: 'Cada centro de usinagem com o seu comando, número de eixos e curso. É este cadastro que define as regras que o programa deve obedecer.',
   },
   {
     arq: 'cadastro-de-dispositivos',
     titulo: 'Dispositivos de fixação',
     rota: '/dispositivos',
-    d: 'Morsas, placas, divisores e batentes especiais, com vida útil e inspeção. O dispositivo é quem define o zero-peça.',
+    d: 'Morsas, placas, divisores e batentes especiais, com controle de vida útil e inspeção. O dispositivo é o elemento que determina o zero-peça.',
   },
   {
     arq: 'agentcode',
     titulo: 'AgentCode',
     rota: '/agentcode',
-    d: 'O agente antes de receber o desenho: recortar as faces, conferir o contrato, gerar o programa.',
+    d: 'O agente antes do envio do desenho: separar as faces, conferir o contrato de usinagem e gerar o programa.',
   },
 ]
 
@@ -325,16 +331,16 @@ function Sistema() {
         <div className="sistema__head reveal">
           <h2 className="h2">Por dentro do Hefesto.</h2>
           <p className="lede">
-            Estas telas são do sistema rodando de verdade, com o parque fabril
-            cadastrado. Não são maquete.
+            As telas abaixo são do sistema em operação, com um parque fabril real
+            cadastrado. Não são protótipos.
           </p>
 
           <p className="nota">
             <span className="nota__rotulo">Nota · versão em desenvolvimento</span>
             <span>
               O Hefesto está em estágio final de implementação.{' '}
-              <b>A interface e a usabilidade ainda vão mudar até o lançamento</b> —
-              nada do que aparece aqui é definitivo.
+              <b>A interface e a usabilidade ainda serão alteradas até o lançamento.</b>{' '}
+              As imagens representam a versão de desenvolvimento, e não a versão final do produto.
             </span>
           </p>
         </div>
@@ -414,9 +420,9 @@ function Sistema() {
 
 // ── Lista de espera ──────────────────────────────────────────────────────────
 const PONTOS = [
-  'Entrada por ordem de chegada, em grupos pequenos.',
-  'A gente conversa antes de liberar — para cadastrar suas máquinas junto com você.',
-  'Sem cobrança nesta fase.',
+  'Entrada por ordem de inscrição, em grupos reduzidos.',
+  'Conversamos antes da liberação para cadastrar as suas máquinas junto com a sua equipe.',
+  'Sem custo nesta fase.',
 ]
 
 function Lista() {
@@ -424,10 +430,10 @@ function Lista() {
     <section className="lista" id="lista">
       <div className="container lista__grid">
         <div className="lista__head reveal">
-          <h2 className="h2">Quer testar quando abrir?</h2>
+          <h2 className="h2">Participe do primeiro grupo de fábricas.</h2>
           <p className="lede">
-            Vamos abrir para um grupo pequeno de fábricas. Deixe seu contato e a gente chama
-            por ordem de entrada.
+            A liberação será feita para um número reduzido de fábricas. Registre os seus dados
+            e faremos o contato por ordem de inscrição.
           </p>
           <ul className="lista__pontos">
             {PONTOS.map(p => (
@@ -450,7 +456,7 @@ function Rodape() {
       <div className="container footer__inner">
         <div>
           <Wordmark />
-          <p>Programação CNC assistida para metalúrgicas.</p>
+          <p>Programação CNC assistida por inteligência artificial para a indústria metalúrgica.</p>
         </div>
         <nav className="footer__links">
           <a href="/aviso-de-privacidade" target="_blank" rel="noopener noreferrer">Aviso de privacidade</a>

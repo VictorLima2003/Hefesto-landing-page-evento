@@ -18,12 +18,12 @@ function mascaraTelefone(v) {
 
 function validar(f) {
   const e = {}
-  if (f.nome.trim().length < 2) e.nome = 'Como podemos te chamar?'
-  if (f.empresa.trim().length < 2) e.empresa = 'Qual é o nome da empresa?'
-  if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(f.email.trim())) e.email = 'Confira o e-mail — é por ele que avisamos.'
+  if (f.nome.trim().length < 2) e.nome = 'Informe o seu nome.'
+  if (f.empresa.trim().length < 2) e.empresa = 'Informe o nome da empresa.'
+  if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(f.email.trim())) e.email = 'Informe um e-mail válido. É por ele que faremos o contato.'
   const d = f.whatsapp.replace(/\D/g, '')
-  if (d && (d.length < 10 || d.length > 11)) e.whatsapp = 'Faltou um dígito no número.'
-  if (!f.consent) e.consent = 'Precisamos do seu aceite para entrar em contato.'
+  if (d && (d.length < 10 || d.length > 11)) e.whatsapp = 'Informe o número com DDD, entre 10 e 11 dígitos.'
+  if (!f.consent) e.consent = 'É necessário aceitar para entrarmos em contato.'
   return e
 }
 
@@ -88,8 +88,8 @@ export default function ListaDeEspera() {
             <polyline points="20,33 28,41 45,23" pathLength="1" stroke="#2f6b4f" strokeWidth="3"
                       strokeLinecap="round" strokeLinejoin="round" />
           </svg>
-          <h3>Pronto, {pronto}. Você está na lista.</h3>
-          <p>A gente avisa por e-mail quando abrir para novas fábricas. Sem spam, e dá para sair quando quiser.</p>
+          <h3>Cadastro confirmado, {pronto}.</h3>
+          <p>Você receberá um e-mail assim que a liberação for aberta para novas fábricas. Sem envio de spam, e o cancelamento pode ser feito a qualquer momento.</p>
         </div>
       </div>
     )
@@ -98,8 +98,8 @@ export default function ListaDeEspera() {
   return (
     <form className="form" onSubmit={enviar} noValidate>
       <div className="field">
-        <label htmlFor="lead-nome">Seu nome</label>
-        <input id="lead-nome" name="nome" autoComplete="name" placeholder="Como devemos te chamar"
+        <label htmlFor="lead-nome">Nome</label>
+        <input id="lead-nome" name="nome" autoComplete="name" placeholder="Nome completo"
                value={f.nome} onChange={e => set('nome', e.target.value)}
                aria-invalid={erros.nome ? 'true' : undefined}
                aria-describedby={erros.nome ? 'erro-nome' : undefined} />
@@ -108,7 +108,7 @@ export default function ListaDeEspera() {
 
       <div className="field">
         <label htmlFor="lead-empresa">Empresa</label>
-        <input id="lead-empresa" name="organization" autoComplete="organization" placeholder="Nome da sua empresa"
+        <input id="lead-empresa" name="organization" autoComplete="organization" placeholder="Nome da empresa"
                value={f.empresa} onChange={e => set('empresa', e.target.value)}
                aria-invalid={erros.empresa ? 'true' : undefined}
                aria-describedby={erros.empresa ? 'erro-empresa' : undefined} />
@@ -136,7 +136,7 @@ export default function ListaDeEspera() {
       </div>
 
       <div className="field">
-        <label id="lbl-comando">Comando das suas máquinas</label>
+        <label id="lbl-comando">Comando das máquinas</label>
         <div className="chips" role="group" aria-labelledby="lbl-comando">
           {COMANDOS.map(c => (
             <button key={c} type="button" className="chip" aria-pressed={f.comando === c}
@@ -157,19 +157,19 @@ export default function ListaDeEspera() {
                aria-invalid={erros.consent ? 'true' : undefined} />
         <span>
           Aceito receber contato sobre o lançamento do Hefesto.
-          Seus dados ficam só com a gente — veja o <a href="/aviso-de-privacidade" target="_blank" rel="noopener noreferrer">aviso de privacidade</a>.
+          Os seus dados não são compartilhados com terceiros. Consulte o <a href="/aviso-de-privacidade" target="_blank" rel="noopener noreferrer">aviso de privacidade</a>.
           {erros.consent && <><br /><span className="field__erro">{erros.consent}</span></>}
         </span>
       </label>
 
       {falha && (
         <div className="form__erro" role="alert">
-          <b>Não consegui gravar seu contato.</b>
+          <b>Não foi possível registrar o seu contato.</b>
           <span>
-            Para não te perder: chame no{' '}
+            Para garantir a sua inscrição, fale pelo{' '}
             <a href={`https://wa.me/${FALLBACK_WHATS}?text=${encodeURIComponent('Quero entrar na lista de espera do Hefesto')}`}
                target="_blank" rel="noopener noreferrer">WhatsApp</a>{' '}
-            ou escreva para <a href={`mailto:${FALLBACK_EMAIL}`}>{FALLBACK_EMAIL}</a>.
+            ou envie um e-mail para <a href={`mailto:${FALLBACK_EMAIL}`}>{FALLBACK_EMAIL}</a>.
           </span>
         </div>
       )}

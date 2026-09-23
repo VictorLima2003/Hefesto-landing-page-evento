@@ -40,7 +40,7 @@ const AGENTES = [
   ['Agente de ferramental',  'acompanha o desgaste'],
   ['Agente de processo',     'estratégia e parâmetros'],
   ['Agente de programação',  'escreve o seu G-code'],
-  ['Agente de conhecimento', 'guarda o jeito da casa'],
+  ['Agente de conhecimento', 'guarda o padrão da fábrica'],
 ]
 
 const SAIDAS = [
