@@ -270,6 +270,16 @@ h1, h2, h3 {
   font-size: clamp(1.9rem, 4vw, 3rem);
   line-height: 1.14;
   color: var(--navy-900);
+  /* chegada: sobe de baixo (ver Hero em App.jsx) */
+  opacity: 0;
+  transform: translateY(26px);
+  transition: opacity .7s var(--ease),
+              transform .85s cubic-bezier(.22, .8, .28, 1);
+}
+.hero__h1.is-dentro { opacity: 1; transform: none; }
+
+@media (prefers-reduced-motion: reduce) {
+  .hero__h1 { opacity: 1; transform: none; }
 }
 /* Degradê do navy quase preto ao azul aberto. Só entra onde o navegador
    sabe recortar o fundo no texto — senão a tinta chapada acima fica valendo. */

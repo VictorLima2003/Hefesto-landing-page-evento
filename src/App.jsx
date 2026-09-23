@@ -71,12 +71,30 @@ function Navbar() {
 
 // ── Hero ─────────────────────────────────────────────────────────────────────
 function Hero() {
+  // O título sobe de baixo toda vez que o hero volta a aparecer — não só no
+  // primeiro carregamento. Por isso o estado acompanha entrar E sair da tela.
+  const [naTela, setNaTela] = useState(false)
+  const titulo = useRef(null)
+
+  useEffect(() => {
+    const el = titulo.current
+    if (!el || !('IntersectionObserver' in window)) {
+      setNaTela(true)   // sem observer, o título simplesmente fica visível
+      return
+    }
+    // threshold 0: só reinicia quando o título saiu inteiro da tela, para
+    // ninguém ver o desaparecimento no meio da rolagem.
+    const obs = new IntersectionObserver(([e]) => setNaTela(e.isIntersecting), { threshold: 0 })
+    obs.observe(el)
+    return () => obs.disconnect()
+  }, [])
+
   return (
     <section className="hero" id="topo">
       <TracosHero />
       <div className="container hero__grid">
         <div className="hero__copy">
-          <h1 className="hero__h1">
+          <h1 ref={titulo} className={`hero__h1${naTela ? ' is-dentro' : ''}`}>
             IA generativa como copiloto da sua programação CNC.
           </h1>
           <div className="hero__actions">
