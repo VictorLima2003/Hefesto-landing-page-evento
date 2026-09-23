@@ -269,8 +269,9 @@ h1, h2, h3 {
   text-align: center;
 }
 .hero__h1 {
-  font-size: clamp(1.9rem, 3.6vw, 2.75rem);
-  line-height: 1.14;
+  font-size: clamp(1.6rem, 3vw, 2.3rem);
+  line-height: 1.16;
+  letter-spacing: -.018em;   /* menor pede um aperto: a linha volta a ter peso */
   color: var(--navy-900);
   /* chegada: sobe de baixo (ver Hero em App.jsx) */
   opacity: 0;
@@ -300,10 +301,10 @@ h1, h2, h3 {
 /* Subtítulo: carrega a integração e a robustez que o título não comporta. */
 .hero__sub {
   margin-top: var(--s5);
-  max-width: 38rem;
+  max-width: 34rem;
   margin-inline: auto;
-  font-size: clamp(1rem, 1.4vw, 1.0625rem);
-  line-height: 1.6;
+  font-size: clamp(.9375rem, 1.15vw, 1rem);
+  line-height: 1.62;
   color: var(--text-secondary);
   opacity: 0;
   transform: translateY(18px);
