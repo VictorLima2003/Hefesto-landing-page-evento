@@ -2,11 +2,29 @@ import { useEffect, useRef, useState } from 'react'
 import wordmarkSvg from '@/assets/hefesto-wordmark.svg?raw'
 import hSvg from '@/assets/hefesto-h.svg?raw'
 import AnimacaoCNC from '@/components/AnimacaoCNC'
+import AnimacaoCNCQuadrada from '@/components/AnimacaoCNCQuadrada'
 import AnimacaoPipeline from '@/components/AnimacaoPipeline'
 import TracosHero from '@/components/TracosHero'
 import ListaDeEspera from '@/components/ListaDeEspera'
 
 const ANO = new Date().getFullYear()
+
+/**
+ * Acompanha uma media query. Serve para escolher QUAL componente montar, e não
+ * para esconder um com CSS: assim só uma das duas animações existe na página e
+ * só um requestAnimationFrame roda.
+ */
+function useMedia(consulta) {
+  const [bate, setBate] = useState(() => window.matchMedia(consulta).matches)
+  useEffect(() => {
+    const mq = window.matchMedia(consulta)
+    const aoMudar = e => setBate(e.matches)
+    setBate(mq.matches)
+    mq.addEventListener('change', aoMudar)
+    return () => mq.removeEventListener('change', aoMudar)
+  }, [consulta])
+  return bate
+}
 
 function Wordmark() {
   return <span className="wordmark" role="img" aria-label="Hefesto"
@@ -75,6 +93,9 @@ function Hero() {
   // primeiro carregamento. Por isso o estado acompanha entrar E sair da tela.
   const [naTela, setNaTela] = useState(false)
   const titulo = useRef(null)
+  // Duas colunas lado a lado não cabem no celular. Abaixo de 768 entra a cena
+  // quadrada, que empilha as mesmas três etapas em camadas.
+  const estreito = useMedia('(max-width: 768px)')
 
   useEffect(() => {
     const el = titulo.current
@@ -109,7 +130,7 @@ function Hero() {
             <span className="hero__note">Cadastro em 20 segundos. Sem compromisso.</span>
           </div>
         </div>
-        <AnimacaoCNC />
+        {estreito ? <AnimacaoCNCQuadrada /> : <AnimacaoCNC />}
       </div>
     </section>
   )

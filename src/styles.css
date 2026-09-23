@@ -875,11 +875,13 @@ h1, h2, h3 {
   .nav__badge { display: none; }
 
   /* No celular o título a 1.9rem ocupava quatro linhas e engolia o resto
-     da dobra. Escala própria daqui para baixo, e o bloco se aperta: o
-     respiro que sobra na tela grande vira poluição na tela pequena. */
-  .hero__h1 { font-size: clamp(1.5rem, 6.2vw, 1.9rem); line-height: 1.16; }
-  .hero__sub { margin-top: var(--s4); font-size: .9375rem; }
-  .hero__actions { margin-top: var(--s6); }
+     da dobra. Escala própria daqui para baixo — e com a letra menor o
+     bloco pede MAIS espaço entre as partes, não menos: é o vão que separa
+     título, explicação e ação em três coisas distintas. */
+  .hero__h1 { font-size: clamp(1.5rem, 6.2vw, 1.9rem); line-height: 1.22; }
+  .hero__sub { margin-top: var(--s6); font-size: .9375rem; }
+  .hero__actions { margin-top: var(--s10); gap: var(--s4); }
+  .hero__grid { gap: var(--s16); }
   .naofaz { --marca-tam: min(60%, 540px); --marca-op: .05; }
   .naofaz__marca { right: 2%; top: 28%; }
   .passo { grid-template-columns: 36px minmax(0, 1fr); gap: var(--s4); padding: var(--s5); }
