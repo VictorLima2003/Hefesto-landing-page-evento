@@ -95,12 +95,14 @@ function Hero() {
       <div className="container hero__grid">
         <div className="hero__copy">
           <h1 ref={titulo} className={`hero__h1${naTela ? ' is-dentro' : ''}`}>
-            A inteligência artificial que programa no CNC seguindo o padrão da sua fábrica.
+            {/* A ênfase começa em "padrão": com o artigo dentro, a quebra do
+                celular deixava um "o" sublinhado sozinho no fim da linha. */}
+            A inteligência artificial que programa no CNC seguindo o{' '}
+            <em>padrão da sua fábrica</em>.
           </h1>
           <p className={`hero__sub${naTela ? ' is-dentro' : ''}`}>
-            Conecte as máquinas, ferramentas e dispositivos que a fábrica já usa. O Hefesto
-            aprende com os programas que a sua equipe aprovou e escreve o código dentro
-            dessas regras.
+            Conecte as máquinas, ferramentas e dispositivos que você já tem. O Hefesto
+            aprende com os programas que a sua equipe aprovou.
           </p>
           <div className="hero__actions">
             <a className="btn" href="#lista">Entrar na lista de espera</a>
