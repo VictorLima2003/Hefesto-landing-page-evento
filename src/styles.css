@@ -271,6 +271,9 @@ h1, h2, h3 {
 .hero__h1 {
   font-size: clamp(1.9rem, 4vw, 3rem);
   line-height: 1.14;
+  /* As linhas saem com comprimento parecido em vez de uma cheia e a
+     seguinte pela metade. É o que tira a sensação de bloco desalinhado. */
+  text-wrap: balance;
   color: var(--navy-900);
   /* chegada: sobe de baixo (ver Hero em App.jsx) */
   opacity: 0;
@@ -315,6 +318,7 @@ h1, h2, h3 {
   margin-inline: auto;
   font-size: clamp(1rem, 1.4vw, 1.0625rem);
   line-height: 1.6;
+  text-wrap: pretty;   /* nada de uma palavra sozinha na última linha */
   color: var(--text-secondary);
   opacity: 0;
   transform: translateY(18px);
@@ -869,6 +873,13 @@ h1, h2, h3 {
 @media (max-width: 768px) {
   :root { --s20: 64px; --s16: 48px; }
   .nav__badge { display: none; }
+
+  /* No celular o título a 1.9rem ocupava quatro linhas e engolia o resto
+     da dobra. Escala própria daqui para baixo, e o bloco se aperta: o
+     respiro que sobra na tela grande vira poluição na tela pequena. */
+  .hero__h1 { font-size: clamp(1.5rem, 6.2vw, 1.9rem); line-height: 1.16; }
+  .hero__sub { margin-top: var(--s4); font-size: .9375rem; }
+  .hero__actions { margin-top: var(--s6); }
   .naofaz { --marca-tam: min(60%, 540px); --marca-op: .05; }
   .naofaz__marca { right: 2%; top: 28%; }
   .passo { grid-template-columns: 36px minmax(0, 1fr); gap: var(--s4); padding: var(--s5); }
