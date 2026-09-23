@@ -215,9 +215,10 @@ h1, h2, h3 {
 /* Entra quando a seção do problema aparece — ver Navbar em App.jsx. */
 .nav__cta {
   opacity: 0;
-  transform: translateY(-6px);
+  transform: translateY(-4px);
   pointer-events: none;
-  transition: opacity .28s var(--ease), transform .28s var(--ease);
+  transition: opacity .6s var(--ease),
+              transform .6s cubic-bezier(.22, .8, .28, 1);
 }
 .nav__cta.is-visivel {
   opacity: 1;
@@ -239,11 +240,20 @@ h1, h2, h3 {
 
 /* ══ HERO ═════════════════════════════════════════════════════ */
 .hero {
+  position: relative;
+  overflow: hidden;
   padding-block: var(--s16) var(--s20);
+  /* Branco onde está o título, azulando conforme desce até a cena. */
   background:
-    radial-gradient(900px 420px at 15% -10%, var(--navy-100) 0%, transparent 62%),
-    var(--bg-app);
+    radial-gradient(1200px 560px at 50% 112%, #b9c9e4 0%, transparent 68%),
+    linear-gradient(180deg,
+      #ffffff 0%,
+      #f6f8fc 22%,
+      var(--navy-100) 52%,
+      #cfdaee 82%,
+      #c1d0e8 100%);
 }
+.hero > .container { position: relative; z-index: 1; }
 /* A cena é larga (duas colunas por dentro), então o hero é empilhado:
    a fala primeiro, a cena inteira logo abaixo. */
 .hero__grid {
@@ -284,7 +294,7 @@ h1, h2, h3 {
 }
 .hero__note {
   font-size: 14px;
-  color: var(--text-tertiary);
+  color: var(--text-secondary);   /* o terciário não tem contraste sobre o azul */
 }
 
 /* ══ PROBLEMA ═════════════════════════════════════════════════ */

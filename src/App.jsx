@@ -3,6 +3,7 @@ import wordmarkSvg from '@/assets/hefesto-wordmark.svg?raw'
 import hSvg from '@/assets/hefesto-h.svg?raw'
 import AnimacaoCNC from '@/components/AnimacaoCNC'
 import AnimacaoPipeline from '@/components/AnimacaoPipeline'
+import TracosHero from '@/components/TracosHero'
 import ListaDeEspera from '@/components/ListaDeEspera'
 
 const ANO = new Date().getFullYear()
@@ -72,6 +73,7 @@ function Navbar() {
 function Hero() {
   return (
     <section className="hero" id="topo">
+      <TracosHero />
       <div className="container hero__grid">
         <div className="hero__copy">
           <h1 className="hero__h1">
