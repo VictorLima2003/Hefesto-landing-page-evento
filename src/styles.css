@@ -231,12 +231,14 @@ h1, h2, h3 {
     radial-gradient(900px 420px at 15% -10%, var(--navy-100) 0%, transparent 62%),
     var(--bg-app);
 }
+/* A cena é larga (duas colunas por dentro), então o hero é empilhado:
+   a fala primeiro, a cena inteira logo abaixo. */
 .hero__grid {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr);
-  gap: var(--s16);
-  align-items: center;
+  gap: var(--s12);
+  justify-items: stretch;
 }
+.hero__copy { max-width: 70ch; }
 .hero__h1 {
   font-size: clamp(2.1rem, 5vw, 3.6rem);
   margin-bottom: var(--s5);
@@ -791,7 +793,6 @@ h1, h2, h3 {
 
 /* ══ RESPONSIVO ═══════════════════════════════════════════════ */
 @media (max-width: 1024px) {
-  .hero__grid { grid-template-columns: 1fr; gap: var(--s12); }
   .lista__grid { grid-template-columns: 1fr; gap: var(--s12); }
   .hero { padding-block: var(--s12) var(--s16); }
 }

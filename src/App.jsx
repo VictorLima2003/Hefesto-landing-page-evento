@@ -54,7 +54,7 @@ function Hero() {
   return (
     <section className="hero" id="topo">
       <div className="container hero__grid">
-        <div>
+        <div className="hero__copy">
           <h1 className="hero__h1">O programa sai com as <em>regras da sua fábrica</em>.</h1>
           <p className="lede hero__lede">
             O Hefesto lê o desenho, consulta o que você cadastrou — suas máquinas, seus dispositivos,
