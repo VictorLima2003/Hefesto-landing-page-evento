@@ -29,10 +29,11 @@ export default function TracosHero() {
          aria-hidden="true" focusable="false">
       <defs>
         <linearGradient id="tracoNavy" x1="0" y1="0" x2="1" y2="0">
-          <stop offset="0%"   stopColor="#1c2438" stopOpacity="0" />
-          <stop offset="26%"  stopColor="#1c2438" stopOpacity=".72" />
-          <stop offset="60%"  stopColor="#344a73" stopOpacity=".58" />
-          <stop offset="100%" stopColor="#6781ab" stopOpacity="0" />
+          {/* Sobre o azul do fundo, só o navy escuro ainda lê. */}
+          <stop offset="0%"   stopColor="#111622" stopOpacity="0" />
+          <stop offset="24%"  stopColor="#111622" stopOpacity=".62" />
+          <stop offset="58%"  stopColor="#26334d" stopOpacity=".52" />
+          <stop offset="100%" stopColor="#344a73" stopOpacity="0" />
         </linearGradient>
       </defs>
       {TRACOS.map((d, i) => (

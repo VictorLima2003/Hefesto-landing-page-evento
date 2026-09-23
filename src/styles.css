@@ -245,13 +245,13 @@ h1, h2, h3 {
   padding-block: var(--s16) var(--s20);
   /* Branco onde está o título, azulando conforme desce até a cena. */
   background:
-    radial-gradient(1200px 560px at 50% 112%, #b9c9e4 0%, transparent 68%),
+    radial-gradient(1200px 540px at 50% 106%, var(--navy-400) 0%, transparent 62%),
     linear-gradient(180deg,
       #ffffff 0%,
-      #f6f8fc 22%,
-      var(--navy-100) 52%,
-      #cfdaee 82%,
-      #c1d0e8 100%);
+      var(--navy-50) 10%,
+      var(--navy-100) 28%,
+      var(--navy-200) 58%,
+      var(--navy-300) 92%);
 }
 .hero > .container { position: relative; z-index: 1; }
 /* A cena é larga (duas colunas por dentro), então o hero é empilhado:
