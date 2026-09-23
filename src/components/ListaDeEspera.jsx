@@ -3,8 +3,8 @@ import { useState } from 'react'
 const COMANDOS = ['Fanuc', 'Siemens', 'Heidenhain', 'Outro', 'Não sei']
 
 /** Contato de emergência: se a gravação falhar, o visitante ainda fala com você. */
-const FALLBACK_WHATS = '5511999999999'
-const FALLBACK_EMAIL = 'contato@hefesto.com.br'
+const FALLBACK_WHATS = '5575991468783'   // 55 (país) + 75 (DDD) + número
+const FALLBACK_EMAIL = 'ovictorlimaa@gmail.com'
 
 const VAZIO = { nome: '', empresa: '', email: '', whatsapp: '', comando: '', consent: false, _site: '' }
 

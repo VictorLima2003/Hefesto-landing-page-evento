@@ -483,7 +483,7 @@ function Rodape() {
         </div>
         <nav className="footer__links">
           <a href="/aviso-de-privacidade" target="_blank" rel="noopener noreferrer">Aviso de privacidade</a>
-          <a href="mailto:contato@hefesto.com.br">contato@hefesto.com.br</a>
+          <a href="mailto:ovictorlimaa@gmail.com">ovictorlimaa@gmail.com</a>
           <span>© {ANO} Hefesto</span>
         </nav>
       </div>
