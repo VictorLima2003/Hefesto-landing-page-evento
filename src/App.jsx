@@ -55,12 +55,9 @@ function Hero() {
     <section className="hero" id="topo">
       <div className="container hero__grid">
         <div className="hero__copy">
-          <h1 className="hero__h1">O programa sai com as <em>regras da sua fábrica</em>.</h1>
-          <p className="lede hero__lede">
-            O Hefesto lê o desenho, consulta o que você cadastrou — suas máquinas, seus dispositivos,
-            suas cavidades — e monta o programa. Onde falta informação, ele para e pergunta.
-            Não inventa.
-          </p>
+          <h1 className="hero__h1">
+            IA generativa como copiloto da sua programação CNC.
+          </h1>
           <div className="hero__actions">
             <a className="btn" href="#lista">Entrar na lista de espera</a>
             <span className="hero__note">Leva 20 segundos. Sem compromisso.</span>

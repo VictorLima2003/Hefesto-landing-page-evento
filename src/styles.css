@@ -238,19 +238,35 @@ h1, h2, h3 {
   gap: var(--s12);
   justify-items: stretch;
 }
-.hero__copy { max-width: 70ch; }
+.hero__copy {
+  max-width: 42rem;   /* o título fecha em duas linhas nesta medida */
+  margin-inline: auto;
+  text-align: center;
+}
 .hero__h1 {
-  font-size: clamp(2.1rem, 5vw, 3.6rem);
-  margin-bottom: var(--s5);
+  font-size: clamp(1.9rem, 4vw, 3rem);
+  line-height: 1.14;
   color: var(--navy-900);
 }
-.hero__h1 em { font-style: normal; color: var(--accent); }
-.hero__lede { font-size: clamp(1.02rem, 1.6vw, 1.2rem); }
+/* Degradê do navy quase preto ao azul aberto. Só entra onde o navegador
+   sabe recortar o fundo no texto — senão a tinta chapada acima fica valendo. */
+@supports ((-webkit-background-clip: text) or (background-clip: text)) {
+  .hero__h1 {
+    background-image: linear-gradient(104deg,
+      var(--navy-950) 6%,
+      var(--navy-800) 40%,
+      var(--navy-500) 96%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    -webkit-text-fill-color: transparent;
+  }
+}
 .hero__actions {
   display: flex;
-  flex-wrap: wrap;
+  flex-direction: column;
   align-items: center;
-  gap: var(--s4);
+  gap: var(--s3);
   margin-top: var(--s8);
 }
 .hero__note {
