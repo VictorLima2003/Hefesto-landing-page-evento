@@ -29,11 +29,27 @@ const Xis = () => (
 // ── Navbar ───────────────────────────────────────────────────────────────────
 function Navbar() {
   const [presa, setPresa] = useState(false)
+  const [mostrarCta, setMostrarCta] = useState(false)
+
   useEffect(() => {
-    const onScroll = () => setPresa(window.scrollY > 8)
-    onScroll()
-    window.addEventListener('scroll', onScroll, { passive: true })
-    return () => window.removeEventListener('scroll', onScroll)
+    const problema = document.getElementById('problema')
+
+    const aoRolar = () => {
+      setPresa(window.scrollY > 8)
+      // O botão do topo só entra quando a seção do problema aparece: enquanto
+      // o hero está na tela, o botão dele já faz esse trabalho, e bem maior.
+      if (problema) {
+        setMostrarCta(problema.getBoundingClientRect().top < window.innerHeight * 0.85)
+      }
+    }
+
+    aoRolar()
+    window.addEventListener('scroll', aoRolar, { passive: true })
+    window.addEventListener('resize', aoRolar)
+    return () => {
+      window.removeEventListener('scroll', aoRolar)
+      window.removeEventListener('resize', aoRolar)
+    }
   }, [])
 
   return (
@@ -43,7 +59,10 @@ function Navbar() {
           <Wordmark />
           <span className="nav__badge">em desenvolvimento</span>
         </a>
-        <a className="btn btn--sm" href="#lista">Entrar na lista</a>
+        {/* inert enquanto escondido: não recebe foco nem clique */}
+        <div className={`nav__cta${mostrarCta ? ' is-visivel' : ''}`} inert={!mostrarCta}>
+          <a className="btn btn--sm" href="#lista">Entrar na lista</a>
+        </div>
       </div>
     </header>
   )

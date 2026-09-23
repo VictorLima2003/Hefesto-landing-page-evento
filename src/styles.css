@@ -212,6 +212,19 @@ h1, h2, h3 {
 }
 .nav__brand { display: flex; align-items: center; gap: var(--s3); color: var(--text-primary); }
 .nav__brand .wordmark { height: 22px; width: auto; }
+/* Entra quando a seção do problema aparece — ver Navbar em App.jsx. */
+.nav__cta {
+  opacity: 0;
+  transform: translateY(-6px);
+  pointer-events: none;
+  transition: opacity .28s var(--ease), transform .28s var(--ease);
+}
+.nav__cta.is-visivel {
+  opacity: 1;
+  transform: none;
+  pointer-events: auto;
+}
+
 .nav__badge {
   font-family: var(--font-mono);
   font-size: 10px;
