@@ -527,9 +527,6 @@ export default function App() {
         <Lista />
       </main>
       <Rodape />
-      <div className="barra-mobile">
-        <a className="btn btn--block" href="#lista">Entrar na lista de espera</a>
-      </div>
     </>
   )
 }
